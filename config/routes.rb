@@ -33,9 +33,12 @@ Rails.application.routes.draw do
   get '/condition-dashboard', to: 'conditions#dashboard'
 
 
-  resources :conditions, only: [:index, :show]
+  # resources :conditions, only: [:index, :show]
+  get '/conditions', to: 'conditions#index' # resources :conditions, only: [:index]
+  get '/conditions/:id', to: 'conditions#show', as: 'condition' # resources :conditions, only: [:show]
 
-  resources :accessories, only: [:show], param: :slug
+  # resources :accessories, only: [:show], param: :slug
+  get '/accessories/:slug', to: 'accessories#show', as: 'accessory' # resources :accessories, only: [:show], param: :slug
   #resources :accessories, only: [:index]
 
   resources :checkout, only: [:create]
@@ -47,15 +50,38 @@ Rails.application.routes.draw do
   patch '/cart', to:'carts#decrease'
 
   namespace :admin do
-    resources :stations, only: [:update, :destroy, :new, :create, :edit], param: :slug
-    resources :trips, only: [:update, :destroy, :new, :create, :edit]
-    resources :conditions, only: [:update, :destroy, :new, :create, :edit]
+    # resources :stations, only: [:update, :destroy, :new, :create, :edit], param: :slug
+    # resources :trips, only: [:update, :destroy, :new, :create, :edit]
+    # resources :conditions, only: [:update, :destroy, :new, :create, :edit]
     resource :dashboard, only: [:show]
     resources :accessories, only: [:edit, :update, :toggle, :new, :create], param: :slug do
       patch :update_accessory, on: :member
     end
   end
-  resources :stations, only: [:index]
+
+  # same as namespace :admin do :stations end above
+  put '/admin/stations/:slug', to: 'admin/stations#update', as: 'admin_station'
+  patch '/admin/stations/:slug', to: 'admin/stations#update'
+  delete '/admin/stations/:slug', to: 'admin/stations#destroy'
+  get '/admin/stations/new', to: 'admin/stations#new', as: 'new_admin_station'
+  post '/admin/stations', to: 'admin/stations#create', as: 'admin_stations'
+  get '/admin/stations/:slug/edit', to: 'admin/stations#edit', as: 'edit_admin_station'
+
+  # same as namespace :admin do resources :trips end above
+  get '/admin/trips/:id/edit', to: 'admin/trips#edit', as: 'edit_admin_trip'
+  put '/admin/trips/:id', to: 'admin/trips#update', as: 'admin_trip'
+  patch '/admin/trips/:id', to: 'admin/trips#update'
+  delete '/admin/trips/:id', to: 'admin/trips#destroy'
+  post '/admin/trips', to: 'admin/trips#create', as: 'admin_trips'
+  get '/admin/trips', to: 'admin/trips#new', as: 'new_admin_trip'
+
+  # same as:
+    # namespace do
+    #   resources :conditions, only: [:update, :destroy, :new, :create, :edit]
+    # end
+
+  # resources :stations, only: [:index]
+  get '/stations', to: 'stations#index' # resources :stations, only: [:index]
 
   get '/:slug', to: 'stations#show', as: "station"
 
