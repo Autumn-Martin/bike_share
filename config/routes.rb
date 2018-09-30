@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/trips', to: 'trips#index' # resources :trips, only: [:index]
   get '/trips/:id', to: 'trips#show', as: 'trip' # resources :trips, only: [:show]
 
-  get '/login', to: 'sessions#new' 
+  get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
@@ -16,7 +16,13 @@ Rails.application.routes.draw do
   put '/orders/:id', to: 'orders#update' # resources :orders, only: [:update]
   patch '/orders/:id', to: 'orders#update' # resources :orders, only: [:update]
 
-  resources :users, only: [:new, :create, :edit, :update]
+  # resources :users, only: [:new, :create, :edit, :update]
+  get '/users/new', to: 'users#new', as: 'new_user' # resources :users, only: [:new]
+  get '/users/:id/edit', to: 'users#edit', as: 'edit_user' # resources :users, only: [:edit]
+  post '/users', to: 'users#create', as: 'users' # resources :users, only: [:create]
+  put '/users/:id', to: 'users#update', as: 'user' # resources :users, only: [:update]
+  patch '/users/:id', to: 'users#update' # resources :users, only: [:update]
+
   get '/bike-shop', to: 'bike_shop#index'
   get 'admin/bike-shop', to: 'admin/accessories#index'
 
