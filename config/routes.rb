@@ -7,11 +7,14 @@ Rails.application.routes.draw do
   get '/trips', to: 'trips#index' # resources :trips, only: [:index]
   get '/trips/:id', to: 'trips#show', as: 'trip' # resources :trips, only: [:show]
 
-  get '/login', to: 'sessions#new'
+  get '/login', to: 'sessions#new' 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :orders, only: [:show, :update]
+  # resources :orders, only: [:show, :update]
+  get '/orders/:id', to: 'orders#show', as: 'order' # resources :orders, only: [:show]
+  put '/orders/:id', to: 'orders#update' # resources :orders, only: [:update]
+  patch '/orders/:id', to: 'orders#update' # resources :orders, only: [:update]
 
   resources :users, only: [:new, :create, :edit, :update]
   get '/bike-shop', to: 'bike_shop#index'
