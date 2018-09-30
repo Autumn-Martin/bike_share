@@ -4,6 +4,8 @@
 
 ![picture of a bike](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQRRjETHLX5PEarqg-ykPcg23B4s0z6YYXvbSOLMoTtiaFhb2N1g)
 
+This is a clone of the original project, which can be found here: https://github.com/bghalami/bike_share
+
 This project was composed by BAMT inc., LLC.
 Version: 1.1.1
 Date: 09.14.18
@@ -26,3 +28,4 @@ In order to retain the primary keys on the data set the following line of code i
 Database - PostgreSQL
 
 Test suite created through Rspec
+
