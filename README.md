@@ -26,3 +26,5 @@ In order to retain the primary keys on the data set the following line of code i
 Database - PostgreSQL
 
 Test suite created through Rspec
+
+For goals & expectations for this project, please refer to *expectations.md*.
