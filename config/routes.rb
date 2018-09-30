@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  root to: 'welcome#home'
-  resources :trips, only: [:index, :show]
+  # root to: 'welcome#home'
+  get '/', to: 'welcome#home', as: 'root' # root to: 'welcome#home'
+
+  # resources :trips, only: [:index, :show]
+  get '/trips', to: 'trips#index' # resources :trips, only: [:index]
+  get '/trips/:id', to: 'trips#show', as: 'trip' # resources :trips, only: [:show]
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
