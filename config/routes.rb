@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     # resources :stations, only: [:update, :destroy, :new, :create, :edit], param: :slug
     # resources :trips, only: [:update, :destroy, :new, :create, :edit]
     # resources :conditions, only: [:update, :destroy, :new, :create, :edit]
-    resource :dashboard, only: [:show]
+    # resource :dashboard, only: [:show]
     resources :accessories, only: [:edit, :update, :toggle, :new, :create], param: :slug do
       patch :update_accessory, on: :member
     end
@@ -79,6 +79,15 @@ Rails.application.routes.draw do
     # namespace do
     #   resources :conditions, only: [:update, :destroy, :new, :create, :edit]
     # end
+  put '/admin/conditions/:id', to: 'admin/conditions#update', as: 'admin_condition'
+  patch '/admin/conditions/:id', to: 'admin/conditions#update'
+  delete '/admin/conditions/:id', to: 'admin/conditions#destroy'
+  get '/admin/conditions/new', to: 'admin/conditions#new', as: 'new_admin_condition'
+  post '/admin/conditions', to: 'admin/conditions#create', as: 'admin_conditions'
+  get '/admin/conditions/:id/edit', to: 'admin/conditions#edit', as: 'edit_admin_condition'
+
+  # same as: namespace do dashboard, only: [:show] end
+  get 'admin/dashboard/', to: 'admin/dashboards#show', as: 'admin_dashboard'
 
   # resources :stations, only: [:index]
   get '/stations', to: 'stations#index' # resources :stations, only: [:index]
