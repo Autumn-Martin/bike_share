@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ## Note: this file now shows multiple ways to write routes for practice purposes
 
   # root to: 'welcome#home'
   get '/', to: 'welcome#home', as: 'root' # root to: 'welcome#home'
